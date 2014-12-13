@@ -1,6 +1,12 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
+var passport = require('passport');
+var strategy = require('./auth0/passport-strategy.js');
+// Session and cookies middlewares to keep user logged in
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
 var app = module.exports = loopback();
 
 // Set up the /favicon.ico
