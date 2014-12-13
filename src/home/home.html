@@ -3,5 +3,8 @@
   <h2>Welcome {{auth.profile.nickname}}</h2>
   <button class="btn btn-lg btn-primary" ng-click="callApi()">Call API</button> <br />
   <button class="btn-sm btn-warning" ng-click="logout()">Logout</button>
-  <button class="btn-sm btn-warning" ng-click="getProducts()">Get products!!</button>
+  <form ng-submit="getProducts(products.keywords)">
+    <input type="text" ng-model="products.keywords" name="search" placeholder="Search For Items">
+    <button type="submit" class="btn-sm btn-warning">Get products!!</button>
+  </form>
 </div>

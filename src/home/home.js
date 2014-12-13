@@ -1,7 +1,7 @@
 angular.module( 'sample.home', [
 'auth0'
 ])
-.controller( 'HomeCtrl', function HomeController( $scope, auth, $http, $location, store ) {
+.controller( 'HomeCtrl', function HomeController( $scope, auth, $http, $location, store, ProductsService ) {
 
   $scope.auth = auth;
 
@@ -23,5 +23,14 @@ angular.module( 'sample.home', [
     store.remove('token');
     $location.path('/login');
   }
+
+  $scope.getProducts = function(keywords) {
+    ProductsService.getProducts(keywords)
+      .then(function(response) {
+        console.log(response);
+      }, function(error) {
+        console.log(error);
+      });
+  };
 
 });

@@ -3,6 +3,7 @@ angular.module( 'sample', [
   'ngRoute',
   'sample.home',
   'sample.login',
+  'sample.services.products',
   'angular-storage',
   'angular-jwt',
   'wish.templates'
@@ -69,7 +70,7 @@ var AUTH0_CALLBACK_URL=location.href;
 angular.module( 'sample.home', [
 'auth0'
 ])
-.controller( 'HomeCtrl', ['$scope', 'auth', '$http', '$location', 'store', function HomeController( $scope, auth, $http, $location, store ) {
+.controller( 'HomeCtrl', ['$scope', 'auth', '$http', '$location', 'store', 'ProductsService', function HomeController( $scope, auth, $http, $location, store, ProductsService ) {
 
   $scope.auth = auth;
 
@@ -92,6 +93,15 @@ angular.module( 'sample.home', [
     $location.path('/login');
   }
 
+  $scope.getProducts = function(keywords) {
+    ProductsService.getProducts(keywords)
+      .then(function(response) {
+        console.log(response);
+      }, function(error) {
+        console.log(error);
+      });
+  };
+
 }]);
 
 angular.module( 'sample.login', [
@@ -109,4 +119,13 @@ angular.module( 'sample.login', [
     });
   }
 
+}]);
+
+angular.module('sample.services.products', [])
+.service('ProductsService', ['$http', function($http) {
+  var url = '/products?keywords=';
+
+  this.getProducts = function(keywords) {
+    return $http.get(url + keywords);
+  };
 }]);
