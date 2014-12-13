@@ -5,7 +5,7 @@ var strategy = new Auth0Strategy({
     domain:       'holidayjs-wish-list.auth0.com',
     clientID:     'rWkTAoi309hAeOJVcMdCfy2J18oOVR9M',
     clientSecret: 'yf5nQKgpwPofASTLuxNHLHR9WFK6OtPNsMjE7ztFj4E2bw3bWkTiYw83RiCg7_9a',
-    callbackURL:  '/callback'
+    callbackURL:  '/auth0-callback'
   }, function(accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token

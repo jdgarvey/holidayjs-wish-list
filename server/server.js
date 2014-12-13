@@ -20,6 +20,22 @@ app.use(loopback.compress());
 // boot scripts mount components like REST API
 boot(app, __dirname);
 
+//auth0
+app.use(cookieParser());
+app.use(session({ secret: 'wishhhhhhhhh' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Auth0 callback handler
+app.get('/auth0-callback',
+  passport.authenticate('auth0', { failureRedirect: '/login' }),
+  function(req, res) {
+    if (!req.user) {
+      throw new Error('user null');
+    }
+    res.redirect("/user");
+  });
+
 // -- Mount static files here--
 // All static middleware should be registered at the end, as all requests
 // passing the static middleware are hitting the file system
