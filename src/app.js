@@ -3,9 +3,11 @@ angular.module( 'sample', [
   'ngRoute',
   'sample.home',
   'sample.login',
+  'sample.services.products',
   'angular-storage',
   'angular-jwt'
 ])
+.constant('ENDPOINT', '/api')
 .config( function myAppConfig ( $routeProvider, authProvider, $httpProvider, $locationProvider,
   jwtInterceptorProvider) {
   $routeProvider
@@ -51,12 +53,20 @@ angular.module( 'sample', [
 
   });
 })
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, ProductsService ) {
   $scope.$on('$routeChangeSuccess', function(e, nextRoute){
     if ( nextRoute.$$route && angular.isDefined( nextRoute.$$route.pageTitle ) ) {
       $scope.pageTitle = nextRoute.$$route.pageTitle + ' | Auth0 Sample' ;
     }
   });
+  $scope.getProducts = function(keywords) {
+    ProductsService.getProducts(keywords)
+      .then(function(response) {
+        console.log(response);
+      }, function(error) {
+        console.log(error);
+    });
+  }
 })
 
 ;
