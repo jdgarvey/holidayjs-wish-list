@@ -1,7 +1,7 @@
 <div class="home">
-  <h1 id="logo"><img src="/home/auth0_logo_final_blue_RGB.png" /></h1>
-  <h2>Welcome {{auth.profile.nickname}}</h2>
   <button class="btn-sm btn-warning" ng-click="logout()">Logout</button>
+  <h2>Welcome {{auth.profile.nickname}}</h2>
+  <!-- <h1 id="logo"><img src="http://www.netanimations.net/Animated_santa_reindeer_flying.gif" /></h1> -->
   <form ng-submit="getProducts(products.keywords)">
     <input type="text" ng-model="products.keywords" name="search" placeholder="Search For Items">
     <button type="submit" class="btn-sm btn-warning">Get products!!</button>
