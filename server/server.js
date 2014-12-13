@@ -19,7 +19,7 @@ boot(app, __dirname);
 // passing the static middleware are hitting the file system
 // Example:
    var path = require('path');
-   app.use(loopback.static(path.resolve(__dirname, '../client')));
+   app.use(loopback.static(path.resolve(__dirname, '../src')));
 
 // Requests that get this far won't be handled
 // by any middleware. Convert them into a 404 error
