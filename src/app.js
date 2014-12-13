@@ -5,7 +5,8 @@ angular.module( 'sample', [
   'sample.login',
   'sample.services.products',
   'angular-storage',
-  'angular-jwt'
+  'angular-jwt',
+  'wish.templates'
 ])
 .constant('ENDPOINT', '/api')
 .config( function myAppConfig ( $routeProvider, authProvider, $httpProvider, $locationProvider,
