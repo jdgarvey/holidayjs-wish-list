@@ -15,5 +15,9 @@
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-ruby-sass": "^0.7.1"
   }
 }
