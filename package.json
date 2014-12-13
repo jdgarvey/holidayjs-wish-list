@@ -11,13 +11,16 @@
     "loopback": "^2.0.0",
     "loopback-boot": "^2.0.0",
     "loopback-datasource-juggler": "^2.7.0",
-    "serve-favicon": "^2.0.1"
+    "serve-favicon": "^2.0.1",
+    "lodash": "~2.4.1",
+    "apac": "~1.0.0"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"
   },
   "devDependencies": {
     "gulp": "^3.8.10",
+    "gulp-angular-templatecache": "^1.5.0",
     "gulp-compass": "^2.0.3",
     "gulp-concat": "^2.4.2",
     "gulp-ng-annotate": "^0.4.2",

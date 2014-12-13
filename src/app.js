@@ -4,7 +4,8 @@ angular.module( 'sample', [
   'sample.home',
   'sample.login',
   'angular-storage',
-  'angular-jwt'
+  'angular-jwt',
+  'wish.templates'
 ])
 .config( function myAppConfig ( $routeProvider, authProvider, $httpProvider, $locationProvider,
   jwtInterceptorProvider) {
