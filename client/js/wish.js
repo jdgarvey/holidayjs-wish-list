@@ -4,9 +4,10 @@ angular.module( 'sample', [
   'sample.home',
   'sample.login',
   'angular-storage',
-  'angular-jwt'
+  'angular-jwt',
+  'wish.templates'
 ])
-.config( function myAppConfig ( $routeProvider, authProvider, $httpProvider, $locationProvider,
+.config( ['$routeProvider', 'authProvider', '$httpProvider', '$locationProvider', 'jwtInterceptorProvider', function myAppConfig ( $routeProvider, authProvider, $httpProvider, $locationProvider,
   jwtInterceptorProvider) {
   $routeProvider
     .when( '/', {
@@ -36,7 +37,7 @@ angular.module( 'sample', [
   // NOTE: in case you are calling APIs which expect a token signed with a different secret, you might
   // want to check the delegation-token example
   $httpProvider.interceptors.push('jwtInterceptor');
-}).run(function($rootScope, auth, store, jwtHelper, $location) {
+}]).run(['$rootScope', 'auth', 'store', 'jwtHelper', '$location', function($rootScope, auth, store, jwtHelper, $location) {
   $rootScope.$on('$locationChangeStart', function() {
     if (!auth.isAuthenticated) {
       var token = store.get('token');
@@ -50,14 +51,14 @@ angular.module( 'sample', [
     }
 
   });
-})
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+}])
+.controller( 'AppCtrl', ['$scope', '$location', function AppCtrl ( $scope, $location ) {
   $scope.$on('$routeChangeSuccess', function(e, nextRoute){
     if ( nextRoute.$$route && angular.isDefined( nextRoute.$$route.pageTitle ) ) {
       $scope.pageTitle = nextRoute.$$route.pageTitle + ' | Auth0 Sample' ;
     }
   });
-})
+}])
 
 ;
 
@@ -68,7 +69,7 @@ var AUTH0_CALLBACK_URL=location.href;
 angular.module( 'sample.home', [
 'auth0'
 ])
-.controller( 'HomeCtrl', function HomeController( $scope, auth, $http, $location, store ) {
+.controller( 'HomeCtrl', ['$scope', 'auth', '$http', '$location', 'store', function HomeController( $scope, auth, $http, $location, store ) {
 
   $scope.auth = auth;
 
@@ -91,12 +92,12 @@ angular.module( 'sample.home', [
     $location.path('/login');
   }
 
-});
+}]);
 
 angular.module( 'sample.login', [
   'auth0'
 ])
-.controller( 'LoginCtrl', function HomeController( $scope, auth, $location, store ) {
+.controller( 'LoginCtrl', ['$scope', 'auth', '$location', 'store', function HomeController( $scope, auth, $location, store ) {
 
   $scope.login = function() {
     auth.signin({}, function(profile, token) {
@@ -108,4 +109,4 @@ angular.module( 'sample.login', [
     });
   }
 
-});
+}]);
