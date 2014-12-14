@@ -1,8 +1,9 @@
 angular.module( 'sample.home', [
-'auth0'
+'auth0',
+'sample.services.products'
 ])
 .controller( 'HomeCtrl', function HomeController( $scope, auth, $http, $location, store, ProductsService ) {
-
+  var ref = new Firebase("https://torid-torch-3093.firebaseio.com");
   $scope.auth = auth;
 
   $scope.callApi = function() {
@@ -27,7 +28,10 @@ angular.module( 'sample.home', [
   $scope.getProducts = function(keywords) {
     ProductsService.getProducts(keywords)
       .then(function(response) {
-        console.log(response);
+          var item = response.data[0];
+          ref.push(item);
+
+          $scope.currentItem = item;
       }, function(error) {
         console.log(error);
       });

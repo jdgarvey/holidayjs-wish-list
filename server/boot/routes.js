@@ -10,9 +10,10 @@ module.exports = function(app) {
 	});
 
 	app.get('/products', function(req, resp) {
+		console.log('KEYWORDS: ', req.query.keywords);
 		opHelper.execute('ItemSearch', {
 			'SearchIndex': 'All',
-			'Keywords': req.params.keywords,
+			'Keywords': req.query.keywords,
 			'ResponseGroup': 'ItemAttributes, Images'
 		}, function(err, results) {
 			resp.send(_.map(results.ItemSearchResponse.Items[0].Item, function(item) {

@@ -1,7 +1,20 @@
 <div class="home">
   <button class="btn-sm btn-warning" ng-click="logout()">Logout</button>
+<<<<<<< HEAD
   <h2>Welcome {{auth.profile.nickname}}</h2>
   <!-- <h1 id="logo"><img src="http://www.netanimations.net/Animated_santa_reindeer_flying.gif" /></h1> -->
+=======
+      <!-- Conveyor Belt -->
+    <div class="belt"></div>
+    <div class="product-container">
+      <div class="product">
+          <img ng-src="{{ currentItem.image }}" />
+      </div>
+    </div>
+    </div>
+
+
+>>>>>>> 61a42b8d75fb1804e75ce64588b48e70bfa214e8
   <form ng-submit="getProducts(products.keywords)">
     <input type="text" ng-model="products.keywords" name="search" placeholder="Search For Items">
     <button type="submit" class="btn-sm btn-warning">Get products!!</button>
